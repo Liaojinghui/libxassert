@@ -41,7 +41,7 @@ namespace XAssert {
 # define XASSERT_START XASSERT_OUTPUT << "Assertion failed in function '" << __FUNCTION__ << "', " << __FILE__ << ":" << __LINE__ << ": "
 
 // Assert errors cause the program to exit with the following call
-# define XASSERT_EXIT { coredump(); exit(XASSERT_RC); }
+# define XASSERT_EXIT { XAssert::coredump(); exit(XASSERT_RC); }
 
 # define XASSERT_NO_EVAL(expr)                                         \
    {                                                          \
