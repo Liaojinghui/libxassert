@@ -88,10 +88,6 @@ endif()
 enable_testing()
 
 #
-# Subdirectories
-#
-
-#
 # Targets
 #
 
@@ -103,6 +99,11 @@ target_include_directories(xassert PUBLIC
     "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
     "$<INSTALL_INTERFACE:${INSTALL_CMAKE_DIR}/include>"
 )
+
+#
+# Subdirectories
+#
+add_subdirectory(test)
 
 #
 # Installation

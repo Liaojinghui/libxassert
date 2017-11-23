@@ -20,20 +20,13 @@
 namespace XAssert {
 
     bool coredump() {
-        std::cerr << "Segfaulting so that you can get a coredump and check the backtrace..." << std::endl;
+        XASSERT_OSTREAM << "Segfaulting so that you can get a coredump and check the backtrace..." << std::endl;
 #ifndef _WIN32
         __builtin_trap();
 #else
         abort();
 #endif
         return true;
-    }
-
-    void assertAssertsEnabled() {
-#ifdef NDEBUG
-        XASSERT_START << "Asserts are NOT enabled and they should be. Please recompile with NDEBUG undefined." << std::endl;
-        XASSERT_EXIT;
-#endif
     }
 
     /**
@@ -65,52 +58,19 @@ namespace XAssert {
             assertStrictlyPositive(shouldNotBeCalled());
             assertNull(shouldNotBeCalled());
 
-            std::clog << "Compiler successfully avoids evaluating expressions in 'assertCall(expr())' calls" << std::endl;
-#else
-            assertTrue(true);
-            assertFalse(false);
-
-            assertInclusiveRange(0, 0, 0);
-            assertInclusiveRange(0, 0, 1);
-            assertInclusiveRange(-1, 0, 0);
-
-            assertStrictlyGreaterThan(1, 0);
-            assertStrictlyLessThan(0, 1);
-
-            assertGreaterThanOrEqual(1, 1);
-            assertGreaterThanOrEqual(2, 1);
-
-            assertLessThanOrEqual(0, 0);
-            assertLessThanOrEqual(0, 1);
-
-            assertEqual(0, 0);
-            assertIsZero(0);
-            assertNotZero(1);
-
-            // This one is a hard one to test!
-            //assertFail(shouldNotBeCalled());
-
-            int val = 3;
-            assertProperty(val, val % 2 == 1 && val > 2);
-
-            assertNotNull(this);
-            assertNotEqual(1, 0);
-
-            assertStrictlyPositive(1);
-
-            assertNull(nullptr);
+            XASSERT_OSTREAM << "Compiler successfully avoids evaluating expressions in 'assertCall(expr())' calls" << std::endl;
 #endif
         }
 
         bool shouldNotBeCalled() {
-            std::cerr << "Oops, your compiler is not optimizing out expressions passed into XAssert calls." << std::endl;
+            XASSERT_OSTREAM << "Oops, your compiler is not optimizing out expressions passed into XAssert calls." << std::endl;
             return coredump();
         }
     };
 
     /**
      * The triggered constructor call makes sure that assert expressions
-     * are or aren't evaluated depending on compilation mode.
+     * aren't evaluated when compiled in non-debug mode.
      */
     XAssertInitializer XAssertInitializer::xassertInit;
 }
