@@ -8,6 +8,7 @@ add_library(xassert
 
 target_include_directories(xassert PUBLIC
     "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
+    "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/include>"
     "$<INSTALL_INTERFACE:${INSTALL_CMAKE_DIR}/include>"
 )
 
@@ -36,4 +37,5 @@ install(TARGETS xassert
 
 # This installs the headers
 # WARNING: Don't add / at the end. No slash means xassert/ directory is created in the destination path
-install(DIRECTORY include/xassert DESTINATION include)
+install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/xassert DESTINATION include)
+install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/include/xassert DESTINATION include)
