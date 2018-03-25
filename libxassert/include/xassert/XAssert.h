@@ -25,7 +25,7 @@ namespace XAssert {
     /**
      * Makes sure asserts are enabled or segfaults.
      */
-    void assertAssertsEnabled();
+    //void assertAssertsEnabled();
 }
 
 #ifndef XASSERT_OSTREAM
