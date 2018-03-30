@@ -38,4 +38,3 @@ install(TARGETS xassert
 # This installs the headers
 # WARNING: Don't add / at the end. No slash means xassert/ directory is created in the destination path
 install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/xassert DESTINATION include)
-install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/include/xassert DESTINATION include)
