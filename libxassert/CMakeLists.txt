@@ -8,8 +8,8 @@ add_library(xassert
 
 target_include_directories(xassert PUBLIC
     "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
-    "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/include>"
-    "$<INSTALL_INTERFACE:${INSTALL_CMAKE_DIR}/include>"
+    #"$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/include>"   # after I removed this, libxutils still didn't cmake without errors
+    #"$<INSTALL_INTERFACE:${INSTALL_CMAKE_DIR}/include>"        # after I removed this too, libxutils cmake'd without errors
 )
 
 #
