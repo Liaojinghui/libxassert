@@ -41,6 +41,19 @@ int main(int argc, char * argv[]) {
     testAssertIsPositive(1);
     testAssertStrictlyPositive(1);
 
+    testAssertIsPowerOfTwo(1);
+    testAssertIsPowerOfTwo(2);
+    testAssertIsPowerOfTwo(4);
+    testAssertIsPowerOfTwo(128);
+    testAssertFalse(XAssert::IsPowerOfTwo(0));
+    testAssertFalse(XAssert::IsPowerOfTwo(3));
+    testAssertFalse(XAssert::IsPowerOfTwo(5));
+    testAssertFalse(XAssert::IsPowerOfTwo(-2));
+    testAssertFalse(XAssert::IsPowerOfTwo(-4));
+    testAssertFalse(XAssert::IsPowerOfTwo(-5));
+    testAssertFalse(XAssert::IsPowerOfTwo(129));
+    testAssertFalse(XAssert::IsPowerOfTwo(-256));
+
     testAssertNull(nullptr);
 
     std::cout << "Test '" << argv[0] << "' passed!" << std::endl;

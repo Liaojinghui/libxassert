@@ -22,6 +22,11 @@ namespace XAssert {
      */
     bool coredump();
 
+    template<class T>
+    bool IsPowerOfTwo(T x) {
+        return x && ((x & (x - 1)) == 0);
+    }
+
     /**
      * Makes sure asserts are enabled or segfaults.
      */
@@ -169,6 +174,12 @@ namespace XAssert {
     } \
 }
 
+#define XASSERT_IsPowerOfTwo(x) { \
+    if(XAssert::IsPowerOfTwo(x) == false) { \
+        XASSERT_START << "'" << #x << "' == " << x << " is NOT a power of two" << std::endl; XASSERT_EXIT; \
+    } \
+}
+
 /**
  * Defining assert* calls during DEBUG builds!
  */
@@ -178,6 +189,7 @@ namespace XAssert {
 # define assertTrue(expr)                           XASSERT_True(expr)
 # define assertInclusiveRange(start, middle, end)   XASSERT_InclusiveRange(start, middle, end)
 # define assertIsPositive(x)                        XASSERT_GreaterThanOrEqual(x, 0)
+# define assertIsPowerOfTwo(x)                      XASSERT_IsPowerOfTwo(x)
 # define assertStrictlyPositive(x)                  XASSERT_StrictlyPositive(x)
 # define assertStrictlyGreaterThan(bigger, smaller) XASSERT_StrictlyGreaterThan(bigger, smaller)
 # define assertStrictlyLessThan(smaller, bigger)    XASSERT_StrictlyLessThan(smaller, bigger)
@@ -201,6 +213,7 @@ namespace XAssert {
 # define assertFalse(expr) XASSERT_NO_EVAL(expr)
 # define assertTrue(expr) XASSERT_NO_EVAL(expr)
 # define assertInclusiveRange(start, middle, end) XASSERT_NO_EVAL(start) XASSERT_NO_EVAL(middle) XASSERT_NO_EVAL(end)
+# define assertIsPowerOfTwo(x) XASSERT_NO_EVAL(x)
 # define assertIsPositive(x) XASSERT_NO_EVAL(x)
 # define assertStrictlyPositive(x) XASSERT_NO_EVAL(x)
 # define assertStrictlyGreaterThan(bigger, smaller) XASSERT_NO_EVAL(bigger) XASSERT_NO_EVAL(smaller)
@@ -221,6 +234,7 @@ namespace XAssert {
 #define testAssertFalse(expr)                          XASSERT_False(expr)
 #define testAssertTrue(expr)                           XASSERT_True(expr)
 #define testAssertInclusiveRange(start, middle, end)   XASSERT_InclusiveRange(start, middle, end)
+#define testAssertIsPowerOfTwo(x)                      XASSERT_IsPowerOfTwo(x)
 #define testAssertIsPositive(x)                        XASSERT_GreaterThanOrEqual(x, 0)
 #define testAssertStrictlyPositive(x)                  XASSERT_StrictlyPositive(x)
 #define testAssertStrictlyGreaterThan(bigger, smaller) XASSERT_StrictlyGreaterThan(bigger, smaller)
