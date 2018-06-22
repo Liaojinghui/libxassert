@@ -11,4 +11,8 @@ A simple assertion libraries that I use, which prints the values that failed the
     cd build/
     cmake -DCMAKE_BUILD_TYPE=Release ..
     cmake --build .
-    cmake --build . --target install    
+
+# Install
+
+    cd build/
+    sudo cmake --build . --target install    
