@@ -57,8 +57,6 @@ namespace XAssert {
             assertNotEqual(shouldNotBeCalled(), shouldNotBeCalled());
             assertStrictlyPositive(shouldNotBeCalled());
             assertNull(shouldNotBeCalled());
-
-            XASSERT_OSTREAM << "Compiler successfully avoids evaluating expressions in 'assertCall(expr())' calls" << std::endl;
 #endif
         }
 
