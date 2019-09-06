@@ -151,7 +151,7 @@ namespace XAssert {
 // Checks if x > 0
 #define XASSERT_StrictlyPositive(x) { \
     if((x) <= 0) { \
-        XASSERT_START << "'" << #x << "' is NOT greater than zero" << std::endl; XASSERT_EXIT; \
+        XASSERT_START << #x << " = " << x << " is NOT greater than zero" << std::endl; XASSERT_EXIT; \
     } \
 }
 
@@ -176,7 +176,13 @@ namespace XAssert {
 
 #define XASSERT_IsPowerOfTwo(x) { \
     if(XAssert::IsPowerOfTwo(x) == false) { \
-        XASSERT_START << "'" << #x << "' == " << x << " is NOT a power of two" << std::endl; XASSERT_EXIT; \
+        XASSERT_START << #x << " = " << x << " is NOT a power of two" << std::endl; XASSERT_EXIT; \
+    } \
+}
+
+#define XASSERT_ValidIndex(i, v) { \
+    if((i) < 0 || (i) >= v.size()) { \
+        XASSERT_START << #i << " = " << i << " is NOT a good index for vector " << #v << " of size " << v.size() << std::endl; XASSERT_EXIT; \
     } \
 }
 
@@ -203,6 +209,7 @@ namespace XAssert {
 # define assertNotNull(p)                           XASSERT_NotNull(p)
 # define assertNotEqual(first, second)              XASSERT_NotEqual(first, second)
 # define assertNull(p)                              XASSERT_Null(p)
+# define assertValidIndex(i, v)                     XASSERT_ValidIndex(i, v)
 
 #else
 
@@ -228,6 +235,7 @@ namespace XAssert {
 # define assertNotNull(p) XASSERT_NO_EVAL(p)
 # define assertNotEqual(first, second) XASSERT_NO_EVAL(first) XASSERT_NO_EVAL(second)
 # define assertNull(p) XASSERT_NO_EVAL(p)
+# define assertValidIndex(i, v)                 XASSERT_NO_EVAL(i) XASSERT_NO_EVAL(v)
 
 #endif
 
@@ -249,3 +257,4 @@ namespace XAssert {
 #define testAssertNotNull(p)                           XASSERT_NotNull(p)
 #define testAssertNotEqual(first, second)              XASSERT_NotEqual(first, second)
 #define testAssertNull(p)                              XASSERT_Null(p)
+#define testAssertValidIndex(i, v)                     XASSERT_ValidIndex(i, v)

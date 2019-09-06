@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <memory>
+#include <vector>
 
 int main(int argc, char * argv[]) {
     (void)argc; (void)argv;
@@ -53,6 +54,8 @@ int main(int argc, char * argv[]) {
     testAssertFalse(XAssert::IsPowerOfTwo(-5));
     testAssertFalse(XAssert::IsPowerOfTwo(129));
     testAssertFalse(XAssert::IsPowerOfTwo(-256));
+    std::vector<int> v(1);
+    testAssertValidIndex(0, v);
 
     testAssertNull(nullptr);
 
