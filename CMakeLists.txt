@@ -35,6 +35,8 @@ set(CXX_FLAGS_OPTIMIZATIONS "-O3")
 string(APPEND CXX_FLAGS " ${CXX_FLAGS_OPTIMIZATIONS}")
 string(APPEND CXX_FLAGS " ${CXX_FLAGS_FORMAT}")
 string(APPEND CXX_FLAGS " ${CXX_FLAGS_INTEGER_CORRECTNESS}")
+string(APPEND CXX_FLAGS "-fPIC")
+
 # TODO: use target_compile_features instead: 
 #   https://cmake.org/cmake/help/v3.1/command/target_compile_features.html#command:target_compile_features
 #   https://cmake.org/cmake/help/v3.1/prop_gbl/CMAKE_CXX_KNOWN_FEATURES.html#prop_gbl:CMAKE_CXX_KNOWN_FEATURES
